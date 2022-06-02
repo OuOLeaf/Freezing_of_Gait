@@ -1,0 +1,133 @@
+\documentclass[10pt, a4paper]{article} 
+\usepackage{fontspec} % Font selection for XeLaTeX; see fontspec.pdf. 
+\usepackage{titlesec,titletoc}
+\usepackage[AutoFakeBold=true, AutoFakeSlant=true]{xeCJK}	% 中文使用 XeCJK，利用 \setCJKmainfont 定義中文內文、粗體與斜體的字型	
+\usepackage{zhnumber}
+%\usepackage[BoldFont, SlantFont]{xeCJK}% 中文使用 XeCJK，並模擬粗體與斜體（\textbf{ } \textit{ }）
+\defaultfontfeatures{Mapping=tex-text} % to support TeX conventions like ``---''
+\usepackage{xunicode} % Unicode support for LaTeX character names(accents, European chars, etc)
+\usepackage{xltxtra} 						% Extra customizations for XeLaTeX
+\usepackage{amsmath, amssymb}
+%\usepackage{enumitem}
+%\usepackage{graphicx, subfig, float, wrapfig} % support the \includegraphics command and options
+%\usepackage[outercaption]{sidecap} %[options]=[outercaption], [innercaption], [leftcaption], [rightcaption]
+\usepackage{array, booktabs}
+\usepackage{color, xcolor}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{wrapfig}
+\usepackage{subfig}
+\usepackage{graphicx}                          				
+\usepackage{listings}						%直接將 latex 碼轉換成顯示文字
+\usepackage{hyperref}
+%\usepackage[parfill]{parskip} 				% 新段落前加一空行，不使用縮排
+%{}裡的套件名稱，[]裡面是指令
+%\usepackage{geometry} 
+\usepackage[left=2.5cm,right=2.5cm,top=1.6cm,bottom=2.54cm]{geometry} 
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{indentfirst}
+\usepackage{natbib}
+\usepackage{ulem}
+\usepackage{CJKnumb}
+\usepackage{xpatch}
+\usepackage{appendix}
+\usepackage{dcolumn}
+\usepackage{longtable}	
+
+% XeCJK package：
+%-----------------------------------------------------------------
+%  中英文內文字型設定
+\setCJKmainfont{Microsoft JhengHei}
+% 設定中文內文字型
+% 定義粗體的字型（依使用的電腦安裝的字型而定）				
+\setmainfont{Times New Roman}				
+% 設定英文內文字型
+\setsansfont{Arial}						
+% 無襯字字型 used with {\sffamily ...}
+\setmonofont{Courier New}				
+% 等寬字型 used with {\ttfamily ...}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+% 其他字型（隨使用的電腦安裝的字型不同，用註解的方式調整（打開或關閉））
+% 英文字型
+\newfontfamily{\E}{Cambria}				
+\newfontfamily{\A}{Arial}
+\newfontfamily{\Cambria}[Scale=0.9]{Cambria}
+\newfontfamily{\TNR}{Times New Roman}
+\newfontfamily{\TT}[Scale=0.8]{Times New Roman}
+% 中文字型
+\newCJKfontfamily{\MB}{Microsoft JhengHei}				% 適用在 Mac 與 Win
+\newCJKfontfamily{\SM}[Scale=0.8]{Microsoft JhengHei}	% 縮小版新細明體
+\newCJKfontfamily{\K}{DFKai-SB}                	% Windows下的標楷體
+% 以下為自行安裝的字型：CwTex 組合
+%\newCJKfontfamily{\CF}{cwTeX Q Fangsong Medium}	% CwTex 仿宋體
+%\newCJKfontfamily{\CB}{cwTeX Q Hei Bold}			% CwTex 粗黑體
+%\newCJKfontfamily{\CK}{cwTeX Q Kai Medium}   		% CwTex 楷體
+%\newCJKfontfamily{\CM}{cwTeX Q Ming Medium}		% CwTex 明體
+%\newCJKfontfamily{\CR}{cwTeX Q Yuan Medium}		% CwTex 圓體
+%-----------------------------------------------------------------------------------------------------------------------
+\XeTeXlinebreaklocale "zh"             		%這兩行一定要加，中文才能自動換行
+\XeTeXlinebreakskip = 0pt plus 1pt     		%這兩行一定要加，中文才能自動換行
+%-----------------------------------------------------------------------------------------------------------------------
+\newcommand{\cw}{\texttt{cw}\kern-.6pt\TeX}	% 這是 cwTex 的 logo 文字
+\newcommand{\imgdir}{fig/}				% 設定圖檔的目錄位置
+
+%\titleformat{command}[shape]{format}{label}{sep}{before}[after]
+%\titleformat{\chapter}[hang]{\fontsize{16}{16}\bfseries\sffamily\filcenter}{\zhnum{chapter}、}{.5em}{}
+%\titlespacing*{\chapter}{0pt}{0pt}{16pt}
+\titleformat{\section}{\fontsize{12}{12}\bfseries\sffamily}{\zhnum{section}、}{.5em}{}
+\titleformat{\subsection}{\fontsize{12}{12}\bfseries\sffamily}{（\zhnum{subsection}）}{.5em}{}
+
+\numberwithin{figure}{section} %圖標號含章節
+\numberwithin{table}{section}
+\numberwithin{equation}{section}
+%\renewcommand{\thechapter}{\Alph{chapter}}
+\renewcommand{\tablename}{表}					% 改變表格標號文字為中文的「表」（預設為 Table）
+\renewcommand{\figurename}{圖}				% 改變圖片標號文字為中文的「圖」（預設為 Figure）
+\renewcommand\contentsname{目錄}
+\renewcommand\listfigurename{圖目錄}
+\renewcommand\listtablename{表目錄}
+\renewcommand{\appendixname}{附~錄}
+
+% 設定顏色 see color Table: http://latexcolor.com
+\definecolor{slight}{gray}{0.9}				
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66} 
+\definecolor{arylideyellow}{rgb}{0.91, 0.84, 0.42}
+\definecolor{babyblue}{rgb}{0.54, 0.81, 0.94}
+\definecolor{cadmiumred}{rgb}{0.89, 0.0, 0.13}
+\definecolor{coolblack}{rgb}{0.0, 0.18, 0.39}
+\definecolor{beaublue}{rgb}{0.74, 0.83, 0.9}
+\definecolor{beige}{rgb}{0.96, 0.96, 0.86}
+\definecolor{bisque}{rgb}{1.0, 0.89, 0.77}
+\definecolor{gray(x11gray)}{rgb}{0.75, 0.75, 0.75}
+\definecolor{limegreen}{rgb}{0.2, 0.8, 0.2}
+\definecolor{splashedwhite}{rgb}{1.0, 0.99, 1.0}
+\definecolor{carolinablue}{rgb}{0.6, 0.73, 0.89}
+\definecolor{lavenderblue}{rgb}{0.8, 0.8, 1.0}
+\definecolor{lightblue}{rgb}{0.68, 0.85, 0.9}
+\definecolor{wtblue}{rgb}{0.612,0.761,0.898}
+\definecolor{wblue}{rgb}{0.871,0.918,0.965}      
+
+%---------------------------------------------------------------------
+% 映出程式碼 \begin{lstlisting} 的內部設定
+\lstset
+{	language=[LaTeX]TeX,
+    breaklines=true,
+    %basicstyle=\tt\scriptsize,
+    basicstyle=\tt\normalsize,
+    keywordstyle=\color{blue},
+    identifierstyle=\color{black},
+    commentstyle=\color{limegreen}\itshape,
+    stringstyle=\rmfamily,
+    showstringspaces=false,
+    %backgroundcolor=\color{splashedwhite},
+    backgroundcolor=\color{slight},
+    frame=single,							%default frame=none 
+    rulecolor=\color{gray(x11gray)},
+    framerule=0.4pt,							%expand outward 
+    framesep=3pt,							%expand outward
+    xleftmargin=3.4pt,						%to make the frame fits in the text area. 
+    xrightmargin=3.4pt,						%to make the frame fits in the text area. 
+    tabsize=2								%default :8 only influence the lstlisting and lstinline.
+}
