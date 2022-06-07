@@ -8,6 +8,8 @@
 
 - report 放最新版本的書面 ： Research：以論文形式、Project：以專題要求格式
 
+- source 備份的 tex 檔
+
 - overleaf 編輯狀態 https://www.overleaf.com/read/dshvrgrmypgj
 
 - 查看版本 檔案右邊有更新日期
@@ -35,6 +37,8 @@
 - 20220528 書面初稿完成 
 
 - 20220602 參考文獻整理 分工表 Ray 細部修改 Jenny KYS 修訂一版完成
+
+- 20220607 修訂版二版完成 與老師討論 再生成最終檔
 
 ## 後續規劃
 
